@@ -99,36 +99,111 @@ def entradaParque_estadio():
             print("Lo que vas a tener que ver para llegar es: \n1-Cima \n2-Estadio Borrego \n3-Cancha de pasto \n4-Centro de Congreso \n5-Plaza Roja \n6-Pabellón TEC \n7-Fuente")
         else:
             print("Comprendo")
-               
-   
-   
-print("ubicaTEC")
-print("¿Por cual entrada ingresaste o vas a ingresar?")
-def menu():
+"""Lo que hace esta funcion es verificar el numero del salon al que se dirige se hace con la forma de metr ese numero en una lista 
+"""
+def encontrar_salon(salon):
+    lista=[salon]
+    for num in lista:
+        if str(num)[0]=="3":
+            print("Tu edificio esta alado del Oxxo")
+            opci=input(("¿Gustas saber cual es el piso de tu salon? {S} {N} "))
+            if opci=="S":
+                if str(num)[1:3]=="00":
+                    print("El piso donde se encuentra tu salon esta en la parte baja del edificio""\nSe encuentran las escaleras al final del pasillo sobre la misma zona donde se encuentra el elevador")
+                    print("El ultimo numero que ingresaste es tu salon")
+                elif str(num)[1:3]=="10":
+                    print("El piso donde se encuentra tu salon esta en el piso entrando al edificio")
+                    print("El ultimo numero que ingresaste es tu salon")
+                elif str(num)[1]=="1":
+                    print("El piso donde se encuentra tu salon esta en el piso entrando al edificio")
+                    print("Los ultimos numeros que ingresaste es tu salon")
+                elif str(num)[1:3]=="20":
+                    print("El piso donde se encuentra tu salon esta en segundo piso,entrando al edificio de lado izquierdo estan las escaleras")
+                    print("El ultimo numero que ingresaste es tu salon")
+                elif str(num)[1]=="2":
+                    print("El piso donde se encuentra tu salon esta en el segundo piso,entrando al edificio de lado izquierdo estan las escaleras ")
+                    print("Los ultimos numeros que ingresaste es tu salon")
+                elif str (num)[1:3]=="30":
+                    print("El piso donde se encuentra tu salon esta en el tercer piso entrando al edificio de lado izquierdo estan las escaleras")
+                    print("El ultimo numero que ingresaste es tu salon")
+                elif str(num)[1]=="3":
+                    print("El piso donde se encuentra tu salon esta en el tercer piso entrando al edificio de lado izquierdo estan las escaleras")
+                    print("Los ultimos numeros que ingresaste es tu salon")
+                else:
+                    print("Dato no valido")
+            else:
+                print("Comprendo")        
+        if str(num)[0]=="4":
+            print("Tu edificio se encuentra donde esta la fuente y la TECstore")
+            opcion=input("¿Gustas saber cual es el piso de tu salon? {S} {N} ")
+            if opcion=="S":
+                if str(num)[1:3]=="10":
+                    print("El piso donde se encuentra tu salon esta en el piso entrando al edificio")
+                    print("El ultimo numero que ingresaste es tu salon")
+                elif str(num)[1]=="1":
+                    print("El piso donde se encuentra tu salon esta en el piso entrando al edificio")
+                    print("Los ultimos numeros que ingresaste es tu salon")
+                elif str(num)[1:3]=="20":
+                    print("El piso donde se encuentra tu salon esta en segundo piso,entrando al edificio de lado izquierdo estan las escaleras")
+                    print("El ultimo numero que ingresaste es tu salon")
+                elif str(num)[1]=="2":
+                    print("El piso donde se encuentra tu salon esta en el segundo piso,entrando al edificio de lado izquierdo estan las escaleras ")
+                    print("Los ultimos numeros que ingresaste es tu salon")
+                elif str (num)[1:3]=="30":
+                    print("El piso donde se encuentra tu salon esta en el tercer piso entrando al edificio de lado izquierdo estan las escaleras")
+                    print("El ultimo numero que ingresaste es tu salon")
+                elif str(num)[1]=="3":
+                    print("El piso donde se encuentra tu salon esta en el tercer piso entrando al edificio de lado izquierdo estan las escaleras")
+                    print("Los ultimos numeros que ingresaste es tu salon")                        
+                else:
+                    print("Dato invalido")
+            else:
+                print("Comprendo")            
+    
+def menu_lugares():
+    print("\t ubicaTEC")
+    print("¿Por cual entrada ingresaste o vas a ingresar?")
     print("1-Principal\n2-Peatonal\n3-Parque Tecnologico")
     print("Lugar a donde deseas ir")
     print("1-Biblioteca\n2-Estadio")
 #Lo que hace el main es tomar en cuenta el primer valor por cual puerta vas a ingresar una vez con el dato va a comparar hasta donde vea a que lugar vas a querer ir
 def main():
-    menu()
-    entrada=int(input("Entrada: "))
-    lugar=int(input("Lugar: "))
-    if entrada==1 and lugar==1:
-        entradaPrincipal_biblioteca()
-    elif entrada==2 and lugar==1:
-        entradaPeatonal_biblioteca()
-    elif entrada==3 and lugar==1:
-        entradaParque_biblioteca()
-    elif entrada==1 and lugar==2:
-        entradaPrincipal_estadio()
-    elif entrada==2 and lugar==2:
-        entradaPeatonal_estadio()
-    elif entrada==3 and lugar==2:
-        entradaParque_estadio()
+    print("¿Que es lo que deseas hacer?""\n1-Dirigirse a un lugar""\n2-Encontrar tu salon")
+    opcion_menu=int(input())
+    if opcion_menu==1:
+        menu_lugares()
+        entrada=int(input("Entrada: "))
+        lugar=int(input("Lugar: "))
+        if entrada==1 and lugar==1:
+            entradaPrincipal_biblioteca()
+        elif entrada==2 and lugar==1:
+            entradaPeatonal_biblioteca()
+        elif entrada==3 and lugar==1:
+            entradaParque_biblioteca()
+        elif entrada==1 and lugar==2:
+            entradaPrincipal_estadio()
+        elif entrada==2 and lugar==2:
+            entradaPeatonal_estadio()
+        elif entrada==3 and lugar==2:
+            entradaParque_estadio()
+        else:
+            print("Dato invalido")
+    elif opcion_menu==2:
+        print("\t ubicaATEC")
+        print("Para ubicar el el edificio de tu salon")
+        salon=int(input("Ingresa el numero de tu salon: ""{Solo se puede para edifcio 3 y 4 ejemplo[3104 o 4205]}: "))
+        encontrar_salon(salon)
+        
+        
+        
+        
+        
     else:
         print("Dato invalido")
         
 main()
 """Casos de prueba si el usuario ingesa que entra desde la entrada principal (1) y se dirige a (1)
-    se desplegara la funcion entradaPrincipal_biblioteca
+    se desplegara la funcion entradaPrincipal_biblioteca 
+    si el salon se escribe la opcion de 3104 le dira que el edificio es el 3, que esta aldo del oxxo,
+    el piso es el que esta entrando en el edificio y los ultimos numeros es el salon
 """
