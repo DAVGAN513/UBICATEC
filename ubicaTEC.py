@@ -21,10 +21,9 @@ def entradaPrincipal_biblioteca ():
             print("Comprendo")
 #Lo que hara esta funcion es de la entrada peatonal ote va a dirigir indicaciones hacia l abiblioteca 
 def entradaPeatonal_biblioteca ():
-    print("Saliendo de los torniquetes, dirigete a la alberca[estara de lado derecho],una vez ahi gira a la derecha y camina de forma recta"
-          "\nestara donde haya un lugar lleno de ventanales,estara el lugar a la derecha :)")
-    respuesta11=input("\t¿Deseas saber lo que tienes que pasar para poder llegar atu destino? [{S},{N}]: ")
-    if respuesta11=="S":
+    direcciones_texto()
+    respuesta11=input("\t¿Deseas saber lo que tienes que pasar para poder llegar atu destino? [{SI},{NO}]: ").lower()
+    if respuesta11=="SI":
         print("Lo que vas a tener que ver para llegar es: \n1-Canchas de basquetbol\n2-Alberca \n3-Liston de Maria \n4-TECstore")
     else:
         print("Comprendo")
@@ -101,7 +100,8 @@ def entradaParque_estadio():
             print("Comprendo")
 """Lo que hace esta funcion es verificar el numero del salon al que se dirige se hace con la forma de metr ese numero en una lista 
 """
-def encontrar_salon(salon):
+def encontrar_salon():
+    salon=int(input("Ingresa el numero de tu salon: ""{Solo se puede para edifcio 3 y 4 ejemplo[3104 o 4205]}: "))
     lista=[salon]
     for num in lista:
         if str(num)[0]=="3":
@@ -158,7 +158,43 @@ def encontrar_salon(salon):
                 else:
                     print("Dato invalido")
             else:
-                print("Comprendo")            
+                print("Comprendo")
+"""Conocer las diferentes actividades que puedes realizar dependiendo de tu horario 
+"""
+def conocer_actividades():
+    print("Vas a colocar tu horario en 24hrs {17}")
+    hora=int(input("Ingresa tu hora,para conocer las actividades que puedes realizar: "))
+    actividades=["futbol","natacion","basquet","voleibol","tochito"]
+    contador=0
+    while hora>0 and hora <=24:
+        if hora>=8 and hora<11:
+            print(f"Las actividades: {actividades[0]},{actividades[1]} y {actividades[2]}")
+        elif hora>=11 and hora<14:
+            print(f"Las actividades: {actividades[0]} y {actividades[1]}")
+        elif  hora>=18 and hora<20:
+            print(f"La actividad: {actividades[4]}")
+        else:
+            print("Lo siento en tu horario no hay yactividades, espera un momento")    
+        hora+=3
+        contador+=1
+        if hora>=24:
+            hora=hora%24
+        print("\nLa hora en la que se estaria acabando las actividades seria, ",hora)
+        numero=input("\nQuieres saber cuantas veces buscas tus actividades?[si/no]").lower()
+        if numero !="si":
+            break    
+    print(f"\nLas veces que se consultaron las actividades fueron {contador}")
+def direcciones_texto():
+    file=open("direccionesPeatonal_biblioteca","w+")
+    lineas=["Saliendo de los torniquetes, dirigete a la alberca[estara de lado derecho],una vez ahi gira a la derecha y camina de forma recta"
+          "\nestara donde haya un lugar lleno de ventanales,estara el lugar a la derecha :)"]
+    file.writelines(lineas)
+    file.seek(0)
+    linea1=file.readline()
+    linea2=file.readline()
+    print(linea1)
+    print(linea2)
+    file.close()
     
 def menu_lugares():
     print("\t ubicaTEC")
@@ -168,42 +204,40 @@ def menu_lugares():
     print("1-Biblioteca\n2-Estadio")
 #Lo que hace el main es tomar en cuenta el primer valor por cual puerta vas a ingresar una vez con el dato va a comparar hasta donde vea a que lugar vas a querer ir
 def main():
-    print("¿Que es lo que deseas hacer?""\n1-Dirigirse a un lugar""\n2-Encontrar tu salon")
-    opcion_menu=int(input())
-    if opcion_menu==1:
-        menu_lugares()
-        entrada=int(input("Entrada: "))
-        lugar=int(input("Lugar: "))
-        if entrada==1 and lugar==1:
-            entradaPrincipal_biblioteca()
-        elif entrada==2 and lugar==1:
-            entradaPeatonal_biblioteca()
-        elif entrada==3 and lugar==1:
-            entradaParque_biblioteca()
-        elif entrada==1 and lugar==2:
-            entradaPrincipal_estadio()
-        elif entrada==2 and lugar==2:
-            entradaPeatonal_estadio()
-        elif entrada==3 and lugar==2:
-            entradaParque_estadio()
+    while True:
+        print("¿Que es lo que deseas hacer?""\n1-Dirigirse a un lugar""\n2-Encontrar tu salon""\n3-Conocer actividades")
+        opcion_menu=int(input())
+        if opcion_menu==1:
+            menu_lugares()
+            entrada=int(input("Entrada: "))
+            lugar=int(input("Lugar: "))
+            if entrada==1 and lugar==1:
+                entradaPrincipal_biblioteca()
+            elif entrada==2 and lugar==1:
+                entradaPeatonal_biblioteca()
+            elif entrada==3 and lugar==1:
+                entradaParque_biblioteca()
+            elif entrada==1 and lugar==2:
+                entradaPrincipal_estadio()
+            elif entrada==2 and lugar==2:
+                entradaPeatonal_estadio()
+            elif entrada==3 and lugar==2:
+                entradaParque_estadio()
+            else:
+                print("Dato invalido")
+        elif opcion_menu==2:
+            print("\t ubicaATEC")
+            print("Para ubicar el el edificio de tu salon")
+            encontrar_salon()
+        elif opcion_menu==3:
+            print("\t ubicaTEC")
+            conocer_actividades()
+            
         else:
             print("Dato invalido")
-    elif opcion_menu==2:
-        print("\t ubicaATEC")
-        print("Para ubicar el el edificio de tu salon")
-        salon=int(input("Ingresa el numero de tu salon: ""{Solo se puede para edifcio 3 y 4 ejemplo[3104 o 4205]}: "))
-        encontrar_salon(salon)
-        
-        
-        
-        
-        
-    else:
-        print("Dato invalido")
-        
+            
 main()
 """Casos de prueba si el usuario ingesa que entra desde la entrada principal (1) y se dirige a (1)
-    se desplegara la funcion entradaPrincipal_biblioteca 
-    si el salon se escribe la opcion de 3104 le dira que el edificio es el 3, que esta aldo del oxxo,
-    el piso es el que esta entrando en el edificio y los ultimos numeros es el salon
+    se desplegara la funcion entradaPrincipal_biblioteca
 """
+        
