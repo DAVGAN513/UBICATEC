@@ -205,7 +205,7 @@ def menu_lugares():
 #Lo que hace el main es tomar en cuenta el primer valor por cual puerta vas a ingresar una vez con el dato va a comparar hasta donde vea a que lugar vas a querer ir
 def main():
     while True:
-        print("¿Que es lo que deseas hacer?""\n1-Dirigirse a un lugar""\n2-Encontrar tu salon""\n3-Conocer actividades")
+        print("¿Que es lo que deseas hacer?""\n1-Dirigirse a un lugar""\n2-Encontrar tu salon""\n3-Conocer actividades""\n4-Salir")
         opcion_menu=int(input())
         if opcion_menu==1:
             menu_lugares()
@@ -232,6 +232,9 @@ def main():
         elif opcion_menu==3:
             print("\t ubicaTEC")
             conocer_actividades()
+        elif opcion_menu==4:
+            print("Adios")
+            break
             
         else:
             print("Dato invalido")
